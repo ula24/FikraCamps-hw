@@ -19,7 +19,14 @@ console.log(BestProfit([150, 146, 142, 143, 145, 144]));
  * example CheckOverlap("13/5/2021 13:00","14/5/2021 13:00", "14/5/2021 13:00","16/5/2021 13:00" ) => overlap
  */
 
-function CheckOverlap(t1Start, t1End, t2Start, t2End) {}
+function CheckOverlap(t1Start, t1End, t2Start, t2End) {
+  if (t1Start == t2Start || t1End == t2Start) {
+    return "overlap";
+  } else {
+    return "no overlap";
+  }
+}
+
 console.log(
   CheckOverlap(
     "13/5/2021 13:00",
@@ -39,9 +46,16 @@ console.log(
  * example HowManyPairs("RLRLRRLL") => 4
  * example HowManyPairs("RRLLRRRLLR") => 2
  */
-
-function HowManyPairs(shoes) {}
-console.log(HowManyPairs("RLRLRRLL"));
+function HowManyPairs(shoes) {
+  let R = shoes.match(/R/g);
+  let L = shoes.match(/L/g);
+  if (L.length > R.length) {
+    return R.length;
+  } else {
+    return L.length;
+  }
+}
+console.log(HowManyPairs("RRLLRRRRRLLR"));
 
 /** Q4
  *    Write a function that takes a string and return JSON of all the letters and its count. check the example to know more
@@ -50,7 +64,6 @@ console.log(HowManyPairs("RLRLRRLL"));
 
 function HowManyLetters(word) {}
 console.log(HowManyLetters("kkssffoos"));
-
 
 /** Q5
   * Create a function that takes an array of integers as an argument and returns the same array in ascending order. Using sort() would be easy, but for this challenge YOU have to sort the array creating your own algorithm.
@@ -67,6 +80,17 @@ console.log(HowManyLetters("kkssffoos"));
  The arrays won't contain duplicate numbers.
  This is a challenge to enhance your ability, using the sort built-in won't enhance your skills.
   */
+let arr = [2, -5, 1, 4, 7, 8];
+for (let outer = 0; outer < arr.length; outer++) {
+  for (let inner = 0; inner < arr.length - outer; inner++) {
+    if (arr[inner] > arr[inner + 1]) {
+      let temp = arr[inner];
+      arr[inner] = arr[inner + 1];
+      arr[inner + 1] = temp;
+    }
+  }
+}
+console.log(arr);
 
 /** Q6
   * Create a function that takes an array of numbers and return both the minimum and maximum numbers, in that order.
@@ -78,6 +102,11 @@ console.log(HowManyLetters("kkssffoos"));
  
  minMax([1]) ➞ [1, 1]
   */
+array = [1, 2, 3, 4, 5];
+minValue = Math.min(...array);
+maxValue = Math.max(...array);
+minmax = [minValue, maxValue];
+console.log(minmax);
 
 /** Q7
   * Create a function that takes an array of numbers between 1 and 10 (excluding one number) and returns the missing number.
@@ -92,6 +121,22 @@ console.log(HowManyLetters("kkssffoos"));
  The array of numbers will be unsorted (not in order).
  Only one number will be missing.
   */
+let arr = [1, 7, 8, 5, 6, 2, 3, 4, 10];
+function missingNum([arr]) {
+  let arr1 = arr.sort(function (a, b) {
+    return a - b;
+  });
+  if (arr1[8] !== 10) {
+    return 10;
+  } else {
+    for (let i = 0; i < arr1.length; i++) {
+      if (arr1[i] - i == 2) {
+        return arr1[i] - 1;
+      }
+    }
+  }
+}
+console.log(missingNum([arr]));
 
 /** Q8
   * Write a function that accepts a positive integer between 0 and 999 inclusive and returns a string representation of that integer written in English.
