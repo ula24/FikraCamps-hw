@@ -1,9 +1,5 @@
-
-
 // Q1
 // Create a function that returns an array of strings sorted by length in ascending order.
-
-
 // Examples
 // sortByLength(["a", "ccc", "dddd", "bb"]) ➞ ["a", "bb", "ccc", "dddd"]
 
@@ -13,16 +9,27 @@
 
 // sortByLength([]) ➞ []
 
-function sortByLength(){}
-
-
-
+var arr = ["may", "april", "september", "august"];
+sortByLength(arr);
+function sortByLength(a) {
+  var swapped;
+  do {
+    swapped = false;
+    for (var i = 0; i < a.length - 1; i++) {
+      if (a[i].length > a[i + 1].length) {
+        var temp = a[i];
+        a[i] = a[i + 1];
+        a[i + 1] = temp;
+        swapped = true;
+      }
+    }
+  } while (swapped);
+}
+console.log(arr);
 
 // Q2
 // You will be given an array of drinks, with each drink being an object with two properties: name and price. Create a function that has the drinks array as an argument and return the drinks objects sorted by price in ascending order.
-
 // Assume that the following array of drink objects needs to be sorted:
-
 // drinks = [
 //   {name: "lemonade", price: 50},
 //   {name: "lime", price: 10}
@@ -30,12 +37,29 @@ function sortByLength(){}
 // The output of the sorted drinks object will be:
 
 // Examples
-
 // sortDrinkByPrice(drinks) ➞ [{name: "lime", price: 10}, {name: "lemonade", price: 50}]
 
-function sortDrinkByPrice(){}
-
-
+var arr = (drinks = [
+  { name: "lemonade", price: 50 },
+  { name: "lime", price: 10 },
+  { name: "lime", price: 30 },
+]);
+sortDrinkByPrice(arr);
+function sortDrinkByPrice(a) {
+  var swapped;
+  do {
+    swapped = false;
+    for (var i = 0; i < a.length - 1; i++) {
+      if (a[i].price > a[i + 1].price) {
+        var temp = a[i];
+        a[i] = a[i + 1];
+        a[i + 1] = temp;
+        swapped = true;
+      }
+    }
+  } while (swapped);
+}
+console.log(arr);
 
 // Q3
 // Write a function that converts an object into an array, where each element represents a key-value pair in the form of an array.
@@ -49,7 +73,10 @@ function sortDrinkByPrice(){}
 // Notes
 // Return an empty array if the object is empty.
 
-function toArray(){}
+function toArray(ob) {
+  return (arr = Object.entries(ob));
+}
+console.log(toArray({ shrimp: 15, tots: 12 }));
 
 // Q4
 // Create a function that takes an object and returns the keys and values as separate arrays. Return the keys sorted alphabetically, and their corresponding values in the same order.
@@ -66,8 +93,12 @@ function toArray(){}
 // Notes
 // Remember to sort the keys.
 
-function keysAndValues(){}
-
+let keysAndValues = function (ob) {
+  let val = Object.values(ob);
+  let ke = Object.keys(ob);
+  return (arr = [ke, val]);
+};
+console.log(keysAndValues({ a: 1, b: 2, c: 3 }));
 
 // Q5
 // Create a function that takes in a year and returns the correct century.
@@ -87,8 +118,11 @@ function keysAndValues(){}
 // The 11th century is between 1001 and 1100.
 // The 18th century is between 1701-1800.
 
-function century(){}
-
+function century(year) {
+  let cent = Math.trunc(year / 100) + 1;
+  return cent;
+}
+console.log(century(1756) + "st century");
 // Q6
 // Number of Arrays in an Array
 // Return the total number of arrays inside a given array.
@@ -101,8 +135,16 @@ function century(){}
 // numOfSubbarrays([[1, 2, 3], [1, 2, 3], [1, 2, 3], [1, 2, 3]]) ➞ 4
 
 // numOfSubbarrays([1, 2, 3]) ➞ 0
-function numOfSubbarrays(){}
-
+function numOfSubbarrays(arr) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (typeof arr[i] == typeof arr) {
+      sum = sum + 1;
+    }
+  }
+  return sum;
+}
+console.log(numOfSubbarrays([[1, 2, 3], 1, "dd", true, 2, [23, 4], [35, 1]]));
 
 // Q7
 // Sum of Number Elements in an Array
@@ -115,15 +157,22 @@ function numOfSubbarrays(){}
 
 // numbersSum([1, 2, 3, 4, 5, true]) ➞ 15
 
+function numbersSumm(arr) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (typeof arr[i] == "number") {
+      sum = sum + arr[i];
+    }
+  }
+  return sum;
+}
+console.log(numbersSumm([1, 2, 3, 4, 5, true]));
 
-function numbersSum(){}
-
-
-
-// Q8 Write a program to validate if the number is from multiples of 2 .
-// ex: console.log(isMultiplesOfTwo(2))     output: true
-// ex: console.log(isMultiplesOfTwo(512))     output: true
-// ex: console.log(isMultiplesOfTwo(513))     output: false
-// ex: console.log(isMultiplesOfTwo(255))     output: false
-
-function isMultiplesOfTwo(num)
+// Q8
+let d = 4;
+let a = [1, 2, 3, 4, 5];
+for (let i = 0; i < d; i++) {
+  let x = a.shift();
+  a[a.length + 1] = x;
+}
+console.log(a);
